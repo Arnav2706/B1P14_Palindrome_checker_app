@@ -13,6 +13,7 @@ public class PalindromeCheckerApp {
         dequePalindrome("madam");
         linkedListPalindrome("madam");
         recursivePalindrome("madam");
+        normalizedPalindrome("A man a plan a canal Panama");
 
        
     }
@@ -133,5 +134,12 @@ public static boolean checkRecursive(String word, int left, int right) {
     if (left >= right) return true;
     if (word.charAt(left) != word.charAt(right)) return false;
     return checkRecursive(word, left + 1, right - 1);
+}
+public static void normalizedPalindrome(String word) {
+    String cleaned = word.toLowerCase().replaceAll("[^a-z0-9]", "");
+    String reversed = new StringBuilder(cleaned).reverse().toString();
+    System.out.println(cleaned.equals(reversed)
+        ? "UC10: Normalized → Palindrome"
+        : "UC10: Not Palindrome");
 }
 }
