@@ -6,12 +6,10 @@ public class PalindromeCheckerApp {
 
         displayWelcomeMessage();      // UC1
         hardcodedPalindrome();
+        reverseUsingLoop("madam");
        
     }
 
-    // =========================
-    // UC1 – Welcome Message
-    // =========================
     public static void displayWelcomeMessage() {
         System.out.println("===================================");
         System.out.println("Palindrome Checker App");
@@ -25,4 +23,5 @@ public class PalindromeCheckerApp {
     } else {
         System.out.println("UC2: Not a Palindrome");
     }
+}
 }
