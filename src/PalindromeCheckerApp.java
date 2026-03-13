@@ -12,6 +12,8 @@ public class PalindromeCheckerApp {
         queueVsStack("madam");
         dequePalindrome("madam");
         linkedListPalindrome("madam");
+        recursivePalindrome("madam");
+
        
     }
 static class ListNode {
@@ -121,5 +123,15 @@ public static void linkedListPalindrome(String word) {
     }
 
     System.out.println(isPalindrome ? "UC8: Linked List → Palindrome" : "UC8: Not Palindrome");
+}
+public static void recursivePalindrome(String word) {
+    boolean result = checkRecursive(word, 0, word.length() - 1);
+    System.out.println(result ? "UC9: Recursive → Palindrome" : "UC9: Not Palindrome");
+}
+
+public static boolean checkRecursive(String word, int left, int right) {
+    if (left >= right) return true;
+    if (word.charAt(left) != word.charAt(right)) return false;
+    return checkRecursive(word, left + 1, right - 1);
 }
 }
