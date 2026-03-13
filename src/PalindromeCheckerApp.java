@@ -10,6 +10,7 @@ public class PalindromeCheckerApp {
         twoPointerCheck("madam");
         stackPalindrome("madam");
         queueVsStack("madam");
+        dequePalindrome("madam");
        
     }
 
@@ -68,5 +69,14 @@ public static void queueVsStack(String word) {
         if (!queue.remove().equals(stack.pop())) { isPalindrome = false; break; }
     }
     System.out.println(isPalindrome ? "UC6: Queue vs Stack → Palindrome" : "UC6: Not Palindrome");
+}
+public static void dequePalindrome(String word) {
+    Deque<Character> deque = new LinkedList<>();
+    for (char ch : word.toCharArray()) deque.add(ch);
+    boolean isPalindrome = true;
+    while (deque.size() > 1) {
+        if (!deque.removeFirst().equals(deque.removeLast())) { isPalindrome = false; break; }
+    }
+    System.out.println(isPalindrome ? "UC7: Deque → Palindrome" : "UC7: Not Palindrome");
 }
 }
