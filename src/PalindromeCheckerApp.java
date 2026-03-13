@@ -4,20 +4,20 @@ public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        displayWelcomeMessage();      // UC1
-        hardcodedPalindrome();
-        reverseUsingLoop("madam");
-        twoPointerCheck("madam");
-        stackPalindrome("madam");
-        queueVsStack("madam");
-        dequePalindrome("madam");
-        linkedListPalindrome("madam");
-        recursivePalindrome("madam");
-        normalizedPalindrome("A man a plan a canal Panama");
+        displayWelcomeMessage();      // UC1: Display welcome message
+        hardcodedPalindrome();        // UC2: Hardcoded palindrome check
+        reverseUsingLoop("madam");   // UC3: Reverse using loop
+        twoPointerCheck("madam");    // UC4: Two pointer check
+        stackPalindrome("madam");    // UC5: Stack-based check
+        queueVsStack("madam");       // UC6: Queue vs Stack check
+        dequePalindrome("madam");    // UC7: Deque-based check
+        linkedListPalindrome("madam"); // UC8: Linked list check
+        recursivePalindrome("madam"); // UC9: Recursive check
+        normalizedPalindrome("A man a plan a canal Panama"); // UC10: Normalized input check
         PalindromeChecker checker = new PalindromeChecker("madam");
-checker.checkPalindrome();
-        strategyPatternPalindrome("madam");
-        performanceComparison("madam");
+        checker.checkPalindrome();    // UC11: OOP service-based check
+        strategyPatternPalindrome("madam"); // UC12: Strategy pattern check
+        performanceComparison("madam"); // UC13: Performance comparison
 
 
        
