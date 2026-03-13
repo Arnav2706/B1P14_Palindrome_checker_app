@@ -17,6 +17,8 @@ public class PalindromeCheckerApp {
         PalindromeChecker checker = new PalindromeChecker("madam");
 checker.checkPalindrome();
         strategyPatternPalindrome("madam");
+        performanceComparison("madam");
+
 
        
     }
@@ -196,6 +198,40 @@ public static void strategyPatternPalindrome(String word) {
     PalindromeStrategy deque   = new DequeStrategy();
     System.out.println("UC12 (Stack Strategy):  " + (stack.isPalindrome(word)  ? "Palindrome" : "Not Palindrome"));
     System.out.println("UC12 (Deque Strategy):  " + (deque.isPalindrome(word)  ? "Palindrome" : "Not Palindrome"));
+}
+public static void performanceComparison(String word) {
+    System.out.println("\nUC13: Performance Comparison");
+    System.out.println("------------------------------");
+
+    // Two Pointer
+    long start = System.nanoTime();
+    char[] arr = word.toCharArray();
+    int l = 0, r = arr.length - 1;
+    while (l < r) { if (arr[l] != arr[r]) break; l++; r--; }
+    System.out.println("Two Pointer : " + (System.nanoTime() - start) + " ns");
+
+    // Stack
+    start = System.nanoTime();
+    Stack<Character> stack = new Stack<>();
+    for (char ch : word.toCharArray()) stack.push(ch);
+    String rev = "";
+    while (!stack.isEmpty()) rev += stack.pop();
+    word.equals(rev);
+    System.out.println("Stack       : " + (System.nanoTime() - start) + " ns");
+
+    // Deque
+    start = System.nanoTime();
+    Deque<Character> deque = new LinkedList<>();
+    for (char ch : word.toCharArray()) deque.add(ch);
+    while (deque.size() > 1) {
+        if (!deque.removeFirst().equals(deque.removeLast())) break;
+    }
+    System.out.println("Deque       : " + (System.nanoTime() - start) + " ns");
+
+    // StringBuilder reverse
+    start = System.nanoTime();
+    new StringBuilder(word).reverse().toString().equals(word);
+    System.out.println("StringBuilder: " + (System.nanoTime() - start) + " ns");
 }
 
 }
