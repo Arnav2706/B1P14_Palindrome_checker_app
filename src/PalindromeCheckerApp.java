@@ -7,6 +7,7 @@ public class PalindromeCheckerApp {
         displayWelcomeMessage();      // UC1
         hardcodedPalindrome();
         reverseUsingLoop("madam");
+        twoPointerCheck("madam");
        
     }
 
@@ -34,5 +35,19 @@ public static void reverseUsingLoop(String word) {
     } else {
         System.out.println("UC3: Not Palindrome");
     }
+}
+public static void twoPointerCheck(String word) {
+    char[] arr = word.toCharArray();
+    int left = 0, right = arr.length - 1;
+    boolean isPalindrome = true;
+    while (left < right) {
+        if (arr[left] != arr[right]) {
+            isPalindrome = false;
+            break;
+        }
+        left++;
+        right--;
+    }
+    System.out.println(isPalindrome ? "UC4: Two Pointer → Palindrome" : "UC4: Not Palindrome");
 }
 }
