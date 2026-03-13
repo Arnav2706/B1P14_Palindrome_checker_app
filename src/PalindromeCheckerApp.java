@@ -14,14 +14,36 @@ public class PalindromeCheckerApp {
         linkedListPalindrome("madam");
         recursivePalindrome("madam");
         normalizedPalindrome("A man a plan a canal Panama");
+        PalindromeChecker checker = new PalindromeChecker("madam");
+checker.checkPalindrome();
 
        
     }
+
 static class ListNode {
     char val;
     ListNode next;
     ListNode(char val) { this.val = val; }
 }
+
+static class PalindromeChecker {
+    private String word;
+
+    PalindromeChecker(String word) {
+        this.word = word;
+    }
+
+    public void checkPalindrome() {
+        Stack<Character> stack = new Stack<>();
+        for (char ch : word.toCharArray()) stack.push(ch);
+        String reversed = "";
+        while (!stack.isEmpty()) reversed += stack.pop();
+        System.out.println(word.equals(reversed)
+            ? "UC11: OOP Service → Palindrome"
+            : "UC11: Not Palindrome");
+    }
+}
+
     public static void displayWelcomeMessage() {
         System.out.println("===================================");
         System.out.println("Palindrome Checker App");
