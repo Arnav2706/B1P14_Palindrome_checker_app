@@ -9,6 +9,7 @@ public class PalindromeCheckerApp {
         reverseUsingLoop("madam");
         twoPointerCheck("madam");
         stackPalindrome("madam");
+        queueVsStack("madam");
        
     }
 
@@ -57,5 +58,15 @@ public static void stackPalindrome(String word) {
     String reversed = "";
     while (!stack.isEmpty()) reversed += stack.pop();
     System.out.println(word.equals(reversed) ? "UC5: Stack → Palindrome" : "UC5: Not Palindrome");
+}
+public static void queueVsStack(String word) {
+    Queue<Character> queue = new LinkedList<>();
+    Stack<Character> stack = new Stack<>();
+    for (char ch : word.toCharArray()) { queue.add(ch); stack.push(ch); }
+    boolean isPalindrome = true;
+    while (!queue.isEmpty()) {
+        if (!queue.remove().equals(stack.pop())) { isPalindrome = false; break; }
+    }
+    System.out.println(isPalindrome ? "UC6: Queue vs Stack → Palindrome" : "UC6: Not Palindrome");
 }
 }
