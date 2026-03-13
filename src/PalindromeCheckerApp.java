@@ -16,6 +16,7 @@ public class PalindromeCheckerApp {
         normalizedPalindrome("A man a plan a canal Panama");
         PalindromeChecker checker = new PalindromeChecker("madam");
 checker.checkPalindrome();
+        strategyPatternPalindrome("madam");
 
        
     }
@@ -43,6 +44,32 @@ static class PalindromeChecker {
             : "UC11: Not Palindrome");
     }
 }
+
+interface PalindromeStrategy {
+    boolean isPalindrome(String word);
+}
+
+static class StackStrategy implements PalindromeStrategy {
+    public boolean isPalindrome(String word) {
+        Stack<Character> stack = new Stack<>();
+        for (char ch : word.toCharArray()) stack.push(ch);
+        String reversed = "";
+        while (!stack.isEmpty()) reversed += stack.pop();
+        return word.equals(reversed);
+    }
+}
+
+static class DequeStrategy implements PalindromeStrategy {
+    public boolean isPalindrome(String word) {
+        Deque<Character> deque = new LinkedList<>();
+        for (char ch : word.toCharArray()) deque.add(ch);
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) return false;
+        }
+        return true;
+    }
+}
+
 
     public static void displayWelcomeMessage() {
         System.out.println("===================================");
@@ -164,4 +191,11 @@ public static void normalizedPalindrome(String word) {
         ? "UC10: Normalized → Palindrome"
         : "UC10: Not Palindrome");
 }
+public static void strategyPatternPalindrome(String word) {
+    PalindromeStrategy stack   = new StackStrategy();
+    PalindromeStrategy deque   = new DequeStrategy();
+    System.out.println("UC12 (Stack Strategy):  " + (stack.isPalindrome(word)  ? "Palindrome" : "Not Palindrome"));
+    System.out.println("UC12 (Deque Strategy):  " + (deque.isPalindrome(word)  ? "Palindrome" : "Not Palindrome"));
+}
+
 }
