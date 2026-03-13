@@ -11,9 +11,14 @@ public class PalindromeCheckerApp {
         stackPalindrome("madam");
         queueVsStack("madam");
         dequePalindrome("madam");
+        linkedListPalindrome("madam");
        
     }
-
+static class ListNode {
+    char val;
+    ListNode next;
+    ListNode(char val) { this.val = val; }
+}
     public static void displayWelcomeMessage() {
         System.out.println("===================================");
         System.out.println("Palindrome Checker App");
@@ -78,5 +83,43 @@ public static void dequePalindrome(String word) {
         if (!deque.removeFirst().equals(deque.removeLast())) { isPalindrome = false; break; }
     }
     System.out.println(isPalindrome ? "UC7: Deque → Palindrome" : "UC7: Not Palindrome");
+}
+public static void linkedListPalindrome(String word) {
+    if (word == null || word.isEmpty()) return;
+
+    // Build linked list
+    ListNode head = new ListNode(word.charAt(0));
+    ListNode curr = head;
+    for (int i = 1; i < word.length(); i++) {
+        curr.next = new ListNode(word.charAt(i));
+        curr = curr.next;
+    }
+
+    // Find middle using slow/fast pointer
+    ListNode slow = head, fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    // Reverse second half
+    ListNode prev = null, current = slow;
+    while (current != null) {
+        ListNode nextNode = current.next;
+        current.next = prev;
+        prev = current;
+        current = nextNode;
+    }
+
+    // Compare halves
+    ListNode left = head, right = prev;
+    boolean isPalindrome = true;
+    while (right != null) {
+        if (left.val != right.val) { isPalindrome = false; break; }
+        left = left.next;
+        right = right.next;
+    }
+
+    System.out.println(isPalindrome ? "UC8: Linked List → Palindrome" : "UC8: Not Palindrome");
 }
 }
